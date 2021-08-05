@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { TextField, Button, Typography, Paper } from '@material-ui/core';
-import FileBase from 'react-file-base64';
+import { useDispatch } from 'react-redux';
+import { createPost } from '../../actions/posts';
 
+import FileBase from 'react-file-base64';
 import useStyles from './styles';
 
 const Form = () => {
     const classes = useStyles();
+    const dispatch = useDispatch();
 
     const [postData, setPostData] = useState({
         creator: '',
@@ -19,21 +22,21 @@ const Form = () => {
         const { target } = e;
         const inputType = target.name;
         const inputValue = target.value;
-    
         if (inputType === 'creator') {
             setPostData({ ...postData, creator: inputValue });
         } else if (inputType === 'title') {
             setPostData({ ...postData, title: inputValue });
         } else if (inputType === 'message') {
-            setPostData({ ...postData, title: inputValue });
+            setPostData({ ...postData, message: inputValue });
         } else if (inputType === 'tags') {
-            setPostData({ ...postData, title: inputValue });
+            setPostData({ ...postData, tags: inputValue });
         } 
     };
 
 
-    const handleSubmit =  () => {
-
+    const handleSubmit =  (e) => {
+        e.preventDefault();
+        dispatch(createPost(postData));
     };
 
     const clear =  () => {
