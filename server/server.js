@@ -7,12 +7,13 @@ import postRoutes from './routes/posts.js'
 
 const app = express();
 
-// This enable server connect with routes, first arg is prefix
-app.use('/posts', postRoutes);
-
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
+// NOTE:    app.use(cors())     HAS TO BE ABOVE     app.use('/posts', postRoutes)
 app.use(cors());
+
+// This enable server connect with routes, first arg is prefix
+app.use('/posts', postRoutes);
 
 const CONNECTION_URL = 'mongodb+srv://zhouTian-admin:xiao0716@cluster0.oomzs.mongodb.net/DB_MWorld?retryWrites=true&w=majority';
 const PORT = process.env.PORT|| 5000;
