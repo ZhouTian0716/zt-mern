@@ -6,7 +6,8 @@ import useStyles from './styles';
 
 const Posts = ({ setCurrentId }) => {
     const classes = useStyles();
-    // This useSelector grap data from globle state
+
+    // This useSelector grap data from global state
     const posts = useSelector((state) => state.posts);
 
     return (

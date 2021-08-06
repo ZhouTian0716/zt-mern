@@ -1,4 +1,4 @@
-import React, { useState, useEffect }from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
 // This help us to dispatch actions
 import { useDispatch } from 'react-redux';
@@ -11,8 +11,9 @@ import useStyles from './styles';
 
 const App = () => {
     const [currentId, setCurrentId] = useState(null);
-    const classes = useStyles();
     const dispatch = useDispatch();
+    const classes = useStyles();
+    
 
     useEffect(() => {
         dispatch(getPosts());
@@ -26,7 +27,7 @@ const App = () => {
             </AppBar>
             <Grow in>
                 <Container>
-                    <Grid container justify="space-between" alignItems="stretch" spacing={3}>
+                    <Grid container justifyContent ="space-between" alignItems="stretch" spacing={3}>
                         <Grid item xs={12} sm={7}>
                             <Posts setCurrentId={setCurrentId}/>
                         </Grid>
