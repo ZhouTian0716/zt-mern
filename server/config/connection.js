@@ -1,6 +1,6 @@
 
 
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 mongoose.connect(process.env.CONNECTION_URL || 'mongodb://localhost/ztMernLocalDB', {
   useNewUrlParser: true,
