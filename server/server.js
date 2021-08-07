@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import postRoutes from './routes/posts.js'
 
-const db = require('./config/connection');
+const db = require('./config/connection.js');
 
 
 const app = express();
