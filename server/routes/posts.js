@@ -1,5 +1,5 @@
-import express from 'express';
-import { getPosts, createPost, updatePost, deletePost, likePost } from '../controllers/posts.js'
+const express = require("express");
+const { getPosts, createPost, updatePost, deletePost, likePost } = require('../controllers/posts.js');
 const router = express.Router();
 
 // When someone visit localhost:5000
@@ -11,4 +11,4 @@ router.delete('/:id', deletePost );
 
 
 
-export default router;
+module.exports = router;
