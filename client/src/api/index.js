@@ -1,7 +1,10 @@
 import axios from 'axios';
 
 // request to backend routes
-const url = 'http://localhost:5000/posts';
+// Deployed backend
+const url = 'https://zt-mern.herokuapp.com/posts';
+// local backend
+// const url = 'http://localhost:5000/posts';
 
 // In this way for Redux dispatch
 // Here are collections of client requests
