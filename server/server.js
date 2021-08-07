@@ -1,10 +1,10 @@
-require("dotenv").config();
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
+require('dotenv').config();
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 const postRoutes = require('./routes/posts.js');
 
-const path = require("path");
+const path = require('path');
 
 const db = require('./config/connection.js');
 
