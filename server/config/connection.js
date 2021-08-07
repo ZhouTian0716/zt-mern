@@ -9,4 +9,4 @@ mongoose.connect(process.env.CONNECTION_URL || 'mongodb://localhost/ztMernLocalD
   useFindAndModify: false,
 });
 
-module.exports = mongoose.connection;
+export default mongoose.connection;
