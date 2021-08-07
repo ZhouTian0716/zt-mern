@@ -6,7 +6,7 @@ import cors from 'cors';
 import postRoutes from './routes/posts.js'
 
 import db from './config/connection.js';
-
+import path from 'path';
 // const db = require('./config/connection.js');
 
 
