@@ -8,6 +8,15 @@ import { LOGOUT } from '../../constants/actionTypes';
 import useStyles from './styles';
 import logo from '../../images/app.jpg';
 
+// SPOTIFY CONSTANTS
+const redirectUri = 'http://localhost:3000';
+const clientId = 'a64546f1c27541cca025fc19bce260c3';
+const AUTH_URL =`https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state`
+
+
+
+
+
 const Navbar = () => {
     const classes = useStyles();
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('zt-mern-user')));
@@ -35,6 +44,7 @@ const Navbar = () => {
 
     return (
         <AppBar className={classes.appBar} position="static" color="inherit">
+            <a className="MuiButton-root MuiButton-containedPrimary" href={AUTH_URL}>Spotify</a>
             <div className={classes.brandContainer}>
                 <Typography component={Link} to="/" className={classes.heading} variant="h2" align="center">M-NOTEs</Typography>
                 <img className={classes.image} src={logo} alt="icon" height="60" />
