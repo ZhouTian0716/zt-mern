@@ -1,7 +1,7 @@
 // Middle ware is for permission for user actions
-
-const jwt = require('jsonwebtoken');
 require("dotenv").config();
+const jwt = require('jsonwebtoken');
+
 
 const secret = process.env.USER_AUTH_SECRET;
 

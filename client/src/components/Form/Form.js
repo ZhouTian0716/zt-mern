@@ -7,11 +7,12 @@ import FileBase from 'react-file-base64';
 import useStyles from './styles';
 
 const Form = ({ currentId, setCurrentId }) => {
-    const [postData, setPostData] = useState({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
+    const [postData, setPostData] = useState({ title: '', message: '', tags: '', selectedFile: '' });
     // This is about auto complete form with selected post for update
     const post = useSelector((state) => (currentId ? state.posts.find((p) => p._id === currentId) : null));
     const dispatch = useDispatch();
     const classes = useStyles();
+    const user = JSON.parse(localStorage.getItem('zt-mern-user'));
 
     useEffect(() => {
         if (post) setPostData(post);
@@ -21,9 +22,7 @@ const Form = ({ currentId, setCurrentId }) => {
         const { target } = e;
         const inputType = target.name;
         const inputValue = target.value;
-        if (inputType === 'creator') {
-            setPostData({ ...postData, creator: inputValue });
-        } else if (inputType === 'title') {
+        if (inputType === 'title') {
             setPostData({ ...postData, title: inputValue });
         } else if (inputType === 'message') {
             setPostData({ ...postData, message: inputValue });
@@ -35,30 +34,33 @@ const Form = ({ currentId, setCurrentId }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (currentId) {
-            dispatch(updatePost(currentId, postData));
+            dispatch(updatePost(currentId, { ...postData, name: user?.result?.name } ));
         } else {
-            dispatch(createPost(postData));
+            dispatch(createPost( {...postData, name: user?.result?.name} ));
         }
         clear();
     };
 
     const clear = () => {
         setCurrentId(null);
-        setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
+        setPostData({ title: '', message: '', tags: '', selectedFile: '' });
     };
     
+    if (!user?.result?.name) {
+        return (
+          <Paper className={classes.paper}>
+            <Typography variant="h6" align="center">
+              Please Sign In to create your own Music Note and like other's Notes.
+            </Typography>
+          </Paper>
+        );
+    }
+
+
     return (
         <Paper className={classes.paper}>
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-                <Typography variant="h6">{ currentId ? 'Editing' : 'Creating' } a Memory</Typography>
-                <TextField
-                    name="creator"
-                    variant="outlined"
-                    label="Creator"
-                    fullWidth
-                    value={postData.creator}
-                    onChange={handleInputChange}
-                />
+                <Typography variant="h6">{ currentId ? 'Edit' : 'New' } Note</Typography>
                 <TextField
                     name="title"
                     variant="outlined"

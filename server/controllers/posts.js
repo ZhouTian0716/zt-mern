@@ -17,7 +17,10 @@ module.exports = {
 
     async createPost (req, res) {
         const post = req.body;
-        const newPost = new PostMessage( post )
+
+        // IMPORTANT LINE TO ONLY ALLOW LOGIN USER TO ACCESS CRUD ACTIONS
+        const newPost = new PostMessage({ ...post, creator: req.userId, createdAt: new Date().toISOString() })
+        
         try {
             await newPost.save();
             res.status(201).json( newPost );
