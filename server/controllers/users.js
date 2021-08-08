@@ -50,7 +50,7 @@ module.exports = {
             // Step 2: Generating new User in database
             const hashedPassword = await bcrypt.hash(password, 12);
 
-            const result = await User.create({ email: email, password: hashedPassword, user_name: `${firstName} ${lastName}`});
+            const result = await User.create({ email: email, password: hashedPassword, name: `${firstName} ${lastName}`});
             
             // Step 3: Pass token
             const token = jwt.sign( { email: result.email, id: result._id }, secret, { expiresIn: expiration } );

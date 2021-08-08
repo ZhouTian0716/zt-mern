@@ -34,9 +34,9 @@ const Form = ({ currentId, setCurrentId }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (currentId) {
-            dispatch(updatePost(currentId, { ...postData, name: user?.result?.user_name } ));
+            dispatch(updatePost(currentId, { ...postData, name: user?.result?.name } ));
         } else {
-            dispatch(createPost( {...postData, name: user?.result?.user_name} ));
+            dispatch(createPost( {...postData, name: user?.result?.name} ));
         }
         clear();
     };
@@ -46,7 +46,7 @@ const Form = ({ currentId, setCurrentId }) => {
         setPostData({ title: '', message: '', tags: '', selectedFile: '' });
     };
     
-    if (!user?.result?.user_name) {
+    if (!user?.result?.name && !user?.result?.googleId) {
         return (
           <Paper className={classes.paper}>
             <Typography variant="h6" align="center">
