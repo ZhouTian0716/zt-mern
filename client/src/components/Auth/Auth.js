@@ -5,18 +5,22 @@ import { GoogleLogin } from 'react-google-login';
 
 import { useDispatch } from 'react-redux';
 import { AUTH } from '../../constants/actionTypes';
+// import { signIn, signUp } from '../../actions/auth';
 
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Icon from './icon';
 import Input from './Input';
 import useStyles from './styles';
 
-
+const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
 const Auth = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const history = useHistory();
+
+    // login or sign up form data state
+    const [formAuth, setFormAuth] = useState(initialState);
 
     const [showPassword, setShowPassword] = useState(false);
     const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -28,12 +32,18 @@ const Auth = () => {
     };
 
 
-    const handleChange = () => {
+    // A CLEAN WAY TO COLLECT INPUT VALUES
+    const handleChange = (e) => setFormAuth({ ...formAuth, [e.target.name]: e.target.value });
 
-    };
-
-    const handleSubmit = () => {
-
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // console.log(formAuth)
+        if ( isSignup ) {
+            // history here is for navigation later
+            // dispatch(signUp(formAuth, history));
+        } else {
+            // dispatch(signIn(formAuth, history));
+        }
     };
 
 
