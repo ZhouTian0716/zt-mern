@@ -3,7 +3,7 @@ const { getPosts, createPost, updatePost, deletePost, likePost } = require('../c
 const auth = require("../middleware/auth.js");
 const router = express.Router();
 
-// When someone visit localhost:5000
+// When someone visit localhost:5000/posts
 router.get('/', getPosts );
 router.post('/', auth, createPost );
 router.patch('/:id', auth, updatePost );

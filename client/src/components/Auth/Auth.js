@@ -5,7 +5,7 @@ import { GoogleLogin } from 'react-google-login';
 
 import { useDispatch } from 'react-redux';
 import { AUTH } from '../../constants/actionTypes';
-// import { signIn, signUp } from '../../actions/auth';
+import { signIn, signUp } from '../../actions/auth';
 
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Icon from './icon';
@@ -37,12 +37,11 @@ const Auth = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // console.log(formAuth)
         if ( isSignup ) {
             // history here is for navigation later
-            // dispatch(signUp(formAuth, history));
+            dispatch(signUp(formAuth, history));
         } else {
-            // dispatch(signIn(formAuth, history));
+            dispatch(signIn(formAuth, history));
         }
     };
 
@@ -100,7 +99,7 @@ const Auth = () => {
                                 onClick={renderProps.onClick} disabled={renderProps.disabled} startIcon={<Icon />}
                                 variant="contained"
                             >
-                                Google Sign In
+                                Sign with Gmail
                             </Button>
                         )}
                         onSuccess={googleSuccess}

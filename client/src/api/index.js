@@ -1,15 +1,21 @@
 import axios from 'axios';
 
-// request to backend routes
-// Deployed backend
-const url = 'https://zt-mern.herokuapp.com/posts';
-// local backend
-// const url = 'http://localhost:5000/posts';
+// In Production State
+// const url = 'https://zt-mern.herokuapp.com';
+// In Development State
+const url = 'http://localhost:5000';
+
+const API = axios.create({ baseURL: url });
+
+
 
 // In this way for Redux dispatch
 // Here are collections of client requests
-export const fetchPosts = () => axios.get(url);
-export const createPost = (newPost) => axios.post(url, newPost);
-export const updatePost = (id, updatedPost) => axios.patch(`${url}/${id}`, updatedPost);
-export const deletePost = (id) => axios.delete(`${url}/${id}`);
-export const likePost = (id) => axios.patch(`${url}/${id}/likePost`);
+export const fetchPosts = () => API.get('/posts');
+export const createPost = (newPost) => API.post('/posts', newPost);
+export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
+export const updatePost = (id, updatedPost) => API.patch(`/posts/${id}`, updatedPost);
+export const deletePost = (id) => API.delete(`/posts/${id}`);
+
+export const signIn = (formAuth) => API.post('/users/signin', formAuth);
+export const signUp = (formAuth) => API.post('/users/signup', formAuth);

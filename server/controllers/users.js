@@ -1,3 +1,4 @@
+
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 require("dotenv").config();
@@ -8,6 +9,15 @@ const secret = process.env.USER_AUTH_SECRET;
 const expiration = '1h';
 
 module.exports = {
+
+    async getUsers (req, res) {
+        try {
+            const usersData = await User.find();    
+            res.status(200).json( usersData );
+        } catch (error) {
+            res.status(404).json({ message: error.message });
+        }
+    },
 
     async userSignIn (req, res) {
         // front end info in req.body, save those info by destructuring them

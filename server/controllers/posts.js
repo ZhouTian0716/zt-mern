@@ -6,7 +6,7 @@ const PostMessage = require('../models/postMessage.js');
 
 module.exports = {
 
-     async getPosts (req, res) {
+    async getPosts (req, res) {
         try {
             const postMessages = await PostMessage.find();    
             res.status(200).json( postMessages );
@@ -75,5 +75,4 @@ module.exports = {
         const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true });
         res.json(updatedPost);
     },
-
 }

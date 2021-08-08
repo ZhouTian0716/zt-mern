@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { AppBar, Typography, Toolbar, Button, Avatar } from '@material-ui/core';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import decode from 'jwt-decode';
 import { LOGOUT } from '../../constants/actionTypes';
+
 import useStyles from './styles';
 import memories from '../../images/memories.png';
 
 const Navbar = () => {
     const classes = useStyles();
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('zt-mern-user')));
     const dispatch = useDispatch();
     const history = useHistory();
     const location = useLocation();
@@ -23,8 +25,12 @@ const Navbar = () => {
     useEffect(() => {
         const token = user?.token;
 
+        if (token) {
+            const decodedToken = decode(token);
+            if (decodedToken.exp * 1000 < new Date().getTime()) logout();
+        }
         // this gives the refresh that we need
-        setUser(JSON.parse(localStorage.getItem('profile')));
+        setUser(JSON.parse(localStorage.getItem('zt-mern-user')));
     }, [location]);
 
     return (
