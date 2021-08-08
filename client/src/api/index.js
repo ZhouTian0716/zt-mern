@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 // In Production State
-// const url = 'https://zt-mern.herokuapp.com';
+const url = 'https://zt-mern.herokuapp.com';
 // In Development State
-const url = 'http://localhost:5000';
+// const url = 'http://localhost:5000';
 
 const API = axios.create({ baseURL: url });
 

@@ -6,7 +6,7 @@ import decode from 'jwt-decode';
 import { LOGOUT } from '../../constants/actionTypes';
 
 import useStyles from './styles';
-import memories from '../../images/memories.png';
+import memories from '../../images/app.jpg';
 
 const Navbar = () => {
     const classes = useStyles();
