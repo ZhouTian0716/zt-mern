@@ -5,7 +5,8 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/user.js');
 
-const secret = process.env.USER_AUTH_SECRET;
+const secret = 'happy';
+// const secret = process.env.USER_AUTH_SECRET;
 const expiration = '1h';
 
 module.exports = {
@@ -38,16 +39,22 @@ module.exports = {
 
     async userSignUp (req, res) {
         const { email, password, confirmPassword, firstName, lastName } = req.body;
+        // 
         try {
             // Step 1: Compare Credentials
             const existingUser = await User.findOne({ email });
             if (existingUser) return res.status(400).json({ message: "User already exists" });
+            
             if (password !== confirmPassword) return res.status(400).json({ message: "Check your re-enter password" });
+            
             // Step 2: Generating new User in database
             const hashedPassword = await bcrypt.hash(password, 12);
-            const result = await User.create({ email, password: hashedPassword, name: `${firstName} ${lastName}` });
+
+            const result = await User.create({ email: email, password: hashedPassword, user_name: `${firstName} ${lastName}`});
+            
             // Step 3: Pass token
             const token = jwt.sign( { email: result.email, id: result._id }, secret, { expiresIn: expiration } );
+            
             res.status(200).json({ result, token });
         } catch (err) {
             res.status(500).json({ message: "Something went wrong" });
