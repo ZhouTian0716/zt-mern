@@ -1,4 +1,4 @@
-// import express from 'express';
+
 const mongoose = require('mongoose');
 
 const PostMessage = require('../models/postMessage.js');
