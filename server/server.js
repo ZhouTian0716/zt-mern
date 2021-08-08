@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const postRoutes = require('./routes/posts.js');
 const usersRoutes = require('./routes/users.js');
+const spotifyRoutes = require('./routes/spotify.js');
 
 const path = require('path');
 
@@ -21,6 +22,9 @@ app.use(cors());
 // IMPORTANT! This enable server connect with DIFFERENT ENDPIONTS, first arg is prefix
 app.use('/posts', postRoutes);
 app.use('/users', usersRoutes);
+// 
+app.use('/spotify', spotifyRoutes);
+
 
 
 // NOTE: THIS IS IMPORTANT ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
