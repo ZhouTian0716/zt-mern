@@ -16,7 +16,7 @@ module.exports = {
         //   redirectUri: process.env.REDIRECT_URI,
         //   clientId: process.env.CLIENT_ID,
         //   clientSecret: process.env.CLIENT_SECRET,
-          redirectUri: 'http://localhost:3000',
+          redirectUri: 'https://zt-mern.herokuapp.com',
           clientId: 'a64546f1c27541cca025fc19bce260c3',
           clientSecret: '9ee61cb3be0744b2866014d64a420c7e',
         })
@@ -39,7 +39,7 @@ module.exports = {
     spotifyRefresh (req, res) {
         const refreshToken = req.body.refreshToken
         const spotifyApi = new SpotifyWebApi({
-            redirectUri: 'http://localhost:3000',
+            redirectUri: 'https://zt-mern.herokuapp.com',
             clientId: 'a64546f1c27541cca025fc19bce260c3',
             clientSecret: '9ee61cb3be0744b2866014d64a420c7e',
           refreshToken,
