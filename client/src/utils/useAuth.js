@@ -7,7 +7,7 @@ export default function useAuth(code) {
     const [expiresIn, setExpiresIn] = useState()
 
     useEffect(() => {
-        axios.post("http://localhost:5000/spotify/login", {
+        axios.post("https://zt-mern.herokuapp.com/spotify/login", {
             code,
         })
         .then(res => {
@@ -29,7 +29,7 @@ export default function useAuth(code) {
         if (!refreshToken || !expiresIn) return
         const interval = setInterval(() => {
           axios
-            .post("http://localhost:5000/refresh", {
+            .post("https://zt-mern.herokuapp.com/refresh", {
               refreshToken,
             })
             .then(res => {
