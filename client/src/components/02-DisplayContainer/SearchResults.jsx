@@ -7,7 +7,6 @@ export default function SearchResults( {searchResults, chooseTrack} ) {
         <table class="content-table">
             <thead>
                 <tr>
-                    <th>Like</th>
                     <th>Album</th>
                     <th>Song</th>
                     <th>Artist</th>

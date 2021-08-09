@@ -8,7 +8,6 @@ export default function TrackSearchResult({ track, chooseTrack }) {
 
   return (
       <tr onClick={handlePlay}>
-        <td><i class="far fa-heart"></i></td>
         <td><img src={track.albumUrl}/></td>
         <td>{track.title}</td>
         <td>{track.artist}</td>

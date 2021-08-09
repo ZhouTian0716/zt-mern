@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Container } from '@material-ui/core';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-
+import useStyles from './styles';
 import Navbar from './components/Navbar/Navbar.js';
 import Home from './components/Home/Home.js';
 import Auth from './components/Auth/Auth.js';
@@ -18,6 +18,7 @@ const spotifyApi = new SpotifyWebApi({
 })
 
 const App = () => {
+    const classes = useStyles();
 
     const accessToken = useAuth(code);
     const [search, setSearch] = useState('');
@@ -77,10 +78,14 @@ const App = () => {
     }, [search, accessToken])
 
     return (
-        <>
-        <SearchBar accessToken={accessToken} search={search} setSearch={setSearch}/>
-        <SearchResults accessToken={accessToken} searchResults={searchResults} setSearchResults={setSearchResults} chooseTrack={chooseTrack}/>
-        <Player accessToken={accessToken} trackUri={playingTrack?.uri}/>
+        <div className={classes.appContainer}>
+          
+        <div className={classes.musicBox}>
+          <SearchBar accessToken={accessToken} search={search} setSearch={setSearch}/>
+          <SearchResults accessToken={accessToken} searchResults={searchResults} setSearchResults={setSearchResults} chooseTrack={chooseTrack}/>
+          <Player accessToken={accessToken} trackUri={playingTrack?.uri}/>
+        </div>
+        
         <BrowserRouter>
             <Container maxWidth="lg">
                 <Navbar />
@@ -90,7 +95,7 @@ const App = () => {
                 </Switch>
             </Container>
         </BrowserRouter>
-        </>  
+        </div>  
     )
 }
 
