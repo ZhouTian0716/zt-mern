@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Container } from '@material-ui/core';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import logo from './images/app.jpg';
 
 import useStyles from './styles';
 import Navbar from './components/Navbar/Navbar.js';
@@ -16,6 +17,15 @@ const code = new URLSearchParams(window.location.search).get("code");
 const spotifyApi = new SpotifyWebApi({
     clientId: "a64546f1c27541cca025fc19bce260c3",
 })
+
+
+// SPOTIFY CONSTANTS
+const redirectUri = 'http://localhost:3000';
+const clientId = 'a64546f1c27541cca025fc19bce260c3';
+const AUTH_URL =`https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state`
+
+
+
 
 const App = () => {
     const classes = useStyles();
@@ -79,22 +89,27 @@ const App = () => {
 
     return (
         <div className={classes.appContainer}>
+          <div className={classes.headingBar}>
+            <span className="homeName">Music Board</span>
+            <img className={classes.logo} src={logo} alt="logo" />
+            <a className="MuiButton-root MuiButton-containedPrimary" href={AUTH_URL}>Spotify</a>
+          </div>
+
+          <div className={classes.musicBox}>
+            <SearchBar accessToken={accessToken} search={search} setSearch={setSearch}/>
+            <SearchResults accessToken={accessToken} searchResults={searchResults} setSearchResults={setSearchResults} chooseTrack={chooseTrack}/>
+            <Player accessToken={accessToken} trackUri={playingTrack?.uri}/>
+          </div>
           
-        <div className={classes.musicBox}>
-          <SearchBar accessToken={accessToken} search={search} setSearch={setSearch}/>
-          <SearchResults accessToken={accessToken} searchResults={searchResults} setSearchResults={setSearchResults} chooseTrack={chooseTrack}/>
-          <Player accessToken={accessToken} trackUri={playingTrack?.uri}/>
-        </div>
-        
-        <BrowserRouter>
-            <Container maxWidth="lg">
-                <Navbar />
-                <Switch >
-                    <Route path="/" exact component={Home} />
-                    <Route path="/auth" exact component={Auth} />
-                </Switch>
-            </Container>
-        </BrowserRouter>
+          <BrowserRouter>
+              <Container maxWidth="lg">
+                  <Navbar />
+                  <Switch >
+                      <Route path="/" exact component={Home} />
+                      <Route path="/auth" exact component={Auth} />
+                  </Switch>
+              </Container>
+          </BrowserRouter>
         </div>  
     )
 }
