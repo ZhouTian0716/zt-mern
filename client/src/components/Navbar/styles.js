@@ -10,9 +10,13 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '10px 50px',
+    backgroundColor: 'rgba(128, 128, 128, 0.5)',
+    webkitBoxShadow:'0 0 20px LightCyan', 
+    mozBoxShadow: '0 0 20px LightCyan',
+    boxShadow:'0 0 20px LightCyan',
   },
   heading: {
-    color: 'rgba(0,183,255, 1)',
+    color: 'LightCyan',
     textDecoration: 'none',
   },
   image: {
