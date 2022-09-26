@@ -17,7 +17,7 @@
 * Redux.
 
 ## Guides ( Important! )
-  To test this Project, because there is a client secret key bonding with each Spotify account. You can join as one of the 25 test account. To get your Spotify account functioning, Please text my number 0406199376 with your 
+ Because currently the playback feature is dependent on a spotify developer account with a uni client secret, your spotify account needs to be added as one of the 25 testing account first. Please send me ( 0406199376 ) your User Name and Email, I don't need your password and I will add your account to get the playback feature of this MERN application.
  * Your Spotify User Name
  * Your Spotify Email
  ![landing page](./readmeImg/3.JPG)
